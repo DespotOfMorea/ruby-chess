@@ -1,2 +1,2 @@
 # ruby-chess
-Simple Chess game for two players in Ruby, using Gosu
+Simple Chess game for two players in Ruby, using Gosu gem.
