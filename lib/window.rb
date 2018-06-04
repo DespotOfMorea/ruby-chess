@@ -8,6 +8,8 @@ class Window <Gosu::Window
     self.caption = "Chess"
     @board = ChessBoard.new(self,method(:gameplay),W_SIDE,W_TOP)
     @status=StatusBar.new(self,W_SIDE,W_TOP*1.25+8*DIM+2*W_BORDER)
+    @fig=Rook.new(self,true,nil)
+    @fig.move
   end
 
   def gameplay(a)
@@ -36,6 +38,7 @@ class Window <Gosu::Window
                         W_WIDTH,W_HEIGHT,COL_B,
                         W_WIDTH,0,COL_B)
       @board.draw
+      @fig.draw
       @status.draw
   end
 end
