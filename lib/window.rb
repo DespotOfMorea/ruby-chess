@@ -1,10 +1,10 @@
 class Window <Gosu::Window
 
-  COL_B=Gosu::Color.rgb(255,178,102)
-  
+  COL_B=Gosu::Color.rgb(255,206,158)
+
   def initialize
     super 300, 300
-    self.caption = "Chess"
+    self.caption = "Chess Game"
   end
 
   def needs_cursor?
