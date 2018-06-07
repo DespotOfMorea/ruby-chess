@@ -1,7 +1,7 @@
 class Bishop < Piece
-  def initialize(window,player=true,square=nil)
+  def initialize(player=true,square=nil)
     super
-    @name = "Bishop"
+    @name = "bishop"
     if @player
       @image = Gosu::Image.new("media/bishop_w.png")
     else
@@ -10,11 +10,10 @@ class Bishop < Piece
   end
 
    def captured
-     if @player                            
-      @x = 1050
+     @x = 1050
+     if @player
       @y = 650
     else
-      @x = 1050
       @y = 350
     end
     @square=nil

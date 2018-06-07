@@ -1,10 +1,8 @@
 require_relative 'constants'
 class Square
   include Constants
-  F_BORDER = 5
-  F_COL = Gosu::Color.rgb(255,0,0)
   attr_reader :name, :colour
-  attr_accessor :piece
+  attr_accessor :piece, :selected
   def initialize(window,file,rank,callback,x=0,y=0,colour=true,piece=nil)
     @window=window
     @piece=piece
@@ -15,12 +13,20 @@ class Square
     @x=x
     @y=y
     @colour=colour
+    @selected=false
     @paint=COL_F_W
-    if !colour
+    if !@colour
       @paint = COL_F_B
     end
     @active_paint=@paint
   end
+
+  def add_piece(piece)
+    @piece=piece
+    piece.move(self)
+  end
+
+
 
   def hover?
     mx = @window.mouse_x
@@ -30,15 +36,20 @@ class Square
 
   def clicked
     if hover? then
-     @callback.call(@name)
+      @callback.call(@name)
+      @selected=true
+    else
+      @selected=false
     end
   end
 
   def update
     if hover? then
-      @active_paint=F_COL
+      @active_paint=COL_A
+    elsif @selected
+      @active_paint=COL_S
     else
-      @active_paint = @paint
+      @active_paint=@paint
     end
   end
 

@@ -3,14 +3,14 @@ require_relative 'constants'
 class ChessBoard
   include Constants
   DIM_TABLE=8*DIM+2*W_BORDER                      # Size chessboard.
-
-  def initialize(window,callback,x=0,y=0)
+  attr_accessor :squares, :callback
+  def initialize(window,x=0,y=0)
     @window=window
-    @callback = callback
+    @callback
     @x=x
     @y=y
     @squares=Hash.new
-    make_squares(callback)
+#    make_squares
   end
 
   def add_square (window, file, rank, callback, x=0, y=0, colour=true, piece=nil)
@@ -19,18 +19,18 @@ class ChessBoard
     self
   end
 
-  def make_squares(callback)
+  def make_squares
     for i in [1,3,5,7]
       for j in [0,2,4,6]
-        add_square(@window,"#{LETTERS[i]}",8-j,callback,@x+W_BORDER+i*DIM,@y+W_BORDER+j*DIM,false)
-        add_square(@window,"#{LETTERS[j]}",8-i,callback,@x+W_BORDER+j*DIM,@y+W_BORDER+i*DIM,false)
+        add_square(@window,"#{LETTERS[i]}",8-j,@callback,@x+W_BORDER+i*DIM,@y+W_BORDER+j*DIM,false)
+        add_square(@window,"#{LETTERS[j]}",8-i,@callback,@x+W_BORDER+j*DIM,@y+W_BORDER+i*DIM,false)
 
-        add_square(@window,"#{LETTERS[j]}",9-i,callback,@x+W_BORDER+j*DIM,@y+W_BORDER+i*DIM-DIM)
-        add_square(@window,"#{LETTERS[j+1]}",8-i,callback,@x+W_BORDER+j*DIM+DIM,@y+W_BORDER+i*DIM)
+        add_square(@window,"#{LETTERS[j]}",9-i,@callback,@x+W_BORDER+j*DIM,@y+W_BORDER+i*DIM-DIM)
+        add_square(@window,"#{LETTERS[j+1]}",8-i,@callback,@x+W_BORDER+j*DIM+DIM,@y+W_BORDER+i*DIM)
       end
     end
   end
-  
+
   def clicked
     if !inside?
       @callback.call(nil)
@@ -48,7 +48,7 @@ class ChessBoard
   def update
     @squares.each_value {|value| value.update }
   end
-  
+
   def draw
     @window.draw_quad(@x,@y,COL_F_B,
                       @x,@y+DIM_TABLE,COL_F_B,

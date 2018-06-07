@@ -1,7 +1,7 @@
 class Pawn < Piece
-  def initialize(window,player=true,square=nil)
+  def initialize(player=true,square=nil)
     super
-    @@type = "Pawn"
+    @type = "pawn"
     if @player
       @image = Gosu::Image.new("media/pawn_w.png")
     else

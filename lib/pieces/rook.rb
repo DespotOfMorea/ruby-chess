@@ -1,7 +1,7 @@
 class Rook < Piece
-  def initialize(window,player=true,square=nil)
+  def initialize(player=true,square=nil)
     super
-    @@type = "Rook"
+    @type = "rook"
     if @player
       @image = Gosu::Image.new("media/rook_w.png")
     else
@@ -10,11 +10,10 @@ class Rook < Piece
   end
 
   def captured
+    @x = 1050
     if @player
-      @x = 1050
       @y = 850
     else
-      @x = 1050
       @y = 150
     end
     @square=0

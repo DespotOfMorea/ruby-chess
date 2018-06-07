@@ -1,7 +1,7 @@
 class Queen < Piece
-  def initialize(window,player=true,square=nil)
+  def initialize(player=true,square=nil)
     super
-    @name = "Queen"
+    @name = "queen"
     if @player
       @image = Gosu::Image.new("media/queen_w.png")
     else
@@ -10,11 +10,10 @@ class Queen < Piece
   end
 
   def captured
+    @x = 1050
     if @player
-      @x = 1050
       @y = 550
     else
-      @x = 1050
       @y = 450
     end
     @square=nil
