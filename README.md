@@ -1,5 +1,5 @@
 # ruby-chess
-Simple Chess game for two players in Ruby, using [Gosu library](https://www.libgosu.org/).
+Simple Chess game for two players in Ruby, using [Gosu library](https://www.libgosu.org/), currently work in progress.
 
 ## Media used
 Images used for pieces are taken from [Wikipedia Commons](https://commons.wikimedia.org/wiki/Main_Page) and are licensed under the [Creative Commons](https://en.wikipedia.org/wiki/Creative_Commons) [Attribution-Share Alike 3.0 Unported](https://creativecommons.org/licenses/by-sa/3.0/deed.en) license.
