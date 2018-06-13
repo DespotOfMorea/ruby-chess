@@ -1,7 +1,7 @@
 require_relative 'constants'
 class Square
   include Constants
-  attr_reader :name, :colour
+  attr_reader :name, :colour, :file, :rank
   attr_accessor :piece, :selected
   def initialize(window,file,rank,callback,x=0,y=0,colour=true,piece=nil)
     @window=window

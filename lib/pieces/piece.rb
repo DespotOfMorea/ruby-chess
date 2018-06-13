@@ -1,8 +1,10 @@
 require_relative '../methods'
+require_relative 'moves'
 
 class Piece
   include Methods
-  attr_accessor :type, :square
+  include Moves
+  attr_accessor :type, :player, :square
   def initialize(player=true,square=nil,x=0,y=0)
 #    @window=window
     @type="Piece"
@@ -17,6 +19,10 @@ class Piece
   def move1
     @x=150
     @y=300
+  end
+
+  def correct_move(square,squares)
+    return true
   end
 
   def move(square)

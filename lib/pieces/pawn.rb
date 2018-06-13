@@ -8,4 +8,13 @@ class Pawn < Piece
       @image = Gosu::Image.new("media/pawn_b.png")
     end
   end
+
+
+  def correct_move(square,squares)
+    #old_field=fields[@field]
+    return correct_move_pawn(square,@square)
+
+  end
+
+
 end

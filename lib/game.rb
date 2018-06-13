@@ -14,23 +14,40 @@ class Game
     new_game
   end
 
-
+  #@status_bar.text="User clicked on #{a} square."
+  #@status_bar.empty_square(square)
+  #@status_bar.piece_picked(@white,square.piece)
 
   def gameplay(a)
     if a!=nil
-     #@status_bar.text="User clicked on #{a} square."
-     square=@board.squares[a]
+      square=@board.squares[a]
      if square.piece==nil
-        @status_bar.empty_square(square)
+       unoccupied_square(square)
      else
-       @status_bar.piece_picked(@white,square.piece)
+       occupied_square(square)
      end
-
    end
+  end
+
+  def unoccupied_square(square)
+    if @active_piece!=nil
+      puts @active_piece.correct_move(square,@board.squares)
+    else
+
+    end
+
+  end
+
+  def occupied_square(square)
+    @active_piece=square.piece
   end
 
 
 
+  def end_turn
+    @turn=!@turn
+    @active_piece=nil
+  end
 
 
 
