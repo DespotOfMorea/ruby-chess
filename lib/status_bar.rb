@@ -15,14 +15,25 @@ class StatusBar
     @text="#{player.name} player is on the move."
   end
 
-  def empty_square(square)
+  def vacant_square(square)
     @text="There is no piece on #{square.name} square."
+  end
+
+  def wrong_move
+    @text="Selected piece cannot move that way."
+  end
+
+  def wrong_piece_colour(player)
+    @text="#{player.name} player is on the move, select your piece first."
   end
 
   def piece_picked(player,piece)
     @text="#{player.name} player selected #{piece.type} from #{piece.square.name} square."
   end
 
+  def out_of_bounds
+    @text="You clicked outside of chessboard. Please pick a piece or a square."
+  end
 
   def update
 

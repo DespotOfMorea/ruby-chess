@@ -26,6 +26,7 @@ class Piece
   end
 
   def move(square)
+    @prev_square=@square
     @square=square
     a=square_2_xy(square.name)
     @x=a[0]+DIM/2
@@ -35,14 +36,14 @@ class Piece
   def captured
     r = Random.new
     b=r.rand(0...2)
-    if @colour
+    if @player
       @x = DIM/2
       @y = 850-b*DIM
     else
       @x = DIM/2
       @y = 150+b*DIM#@window.y_top+DIM/2+b*DIM
     end
-    @field=nil
+    @square=nil
   end
 
   def draw
