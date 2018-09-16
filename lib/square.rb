@@ -20,19 +20,16 @@ class Square
   end
 
   def add_piece(piece)
+    unless @piece.nil?
+      @piece.captured
+      remove_piece
+    end
     @piece = piece
     piece.move(self)
   end
 
   def remove_piece
     @piece = nil
-  end
-
-  def capture_piece
-    unless @piece.nil?
-      @piece.captured
-      remove_piece
-    end
   end
 
   def hover?

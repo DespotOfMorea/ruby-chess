@@ -52,7 +52,16 @@ class Game
   def occupied_square(square)
     player = @black
     player = @white if @turn
-    if square.piece.player == @turn
+    if square.piece.player == @turn && !@active_piece.nil? && castling?(square)
+      if player.castling(@active_piece, square, @board.squares)
+        @status_bar.castling_succ
+        end_turn
+      else
+        @status_bar.castling_not
+      end
+
+    elsif square.piece.player == @turn
+
       @active_piece = square.piece
 
       @status_bar.piece_picked(player, @active_piece)
@@ -71,12 +80,26 @@ class Game
 
   def correct_move?(square)
     if @active_piece.correct_move(square, @board.squares)
-      square.capture_piece
-      @active_piece.square.remove_piece
-      square.add_piece(@active_piece)
+
+      player = @black
+      player = @white if @turn
+      player.move_piece(@active_piece, square)
+
       end_turn
     else
       @status_bar.wrong_move
+    end
+  end
+
+  def castling?(square)
+    if (@active_piece.type == 'rook' && square.piece.type == 'king') || (@active_piece.type == 'king' && square.piece.type == 'rook')
+      if @active_piece.prev_square.nil? && square.piece.prev_square.nil?
+        true
+      else
+        false
+      end
+    else
+      false
     end
   end
 

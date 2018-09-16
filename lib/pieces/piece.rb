@@ -4,7 +4,7 @@ require_relative 'moves'
 class Piece
   include Methods
   include Moves
-  attr_accessor :type, :player, :square
+  attr_accessor :type, :player, :square, :prev_square
   def initialize(player = true, square = nil, x = 0, y = 0)
     #    @window=window
     @type = 'Piece'

@@ -12,32 +12,38 @@ class StatusBar
   end
 
   def on_move(player)
-    @text="#{player.name} player is on the move."
+    @text = "#{player.name} player is on the move."
   end
 
   def vacant_square(square)
-    @text="There is no piece on #{square.name} square."
+    @text = "There is no piece on #{square.name} square."
   end
 
   def wrong_move
-    @text="Selected piece cannot move that way."
+    @text = 'Selected piece cannot move that way.'
+  end
+
+  def castling_succ
+    @text = 'Castling successfull.'
+  end
+
+  def castling_not
+    @text = 'Bad castling.'
   end
 
   def wrong_piece_colour(player)
-    @text="#{player.name} player is on the move, select your piece first."
+    @text = "#{player.name} player is on the move, select your piece first."
   end
 
-  def piece_picked(player,piece)
-    @text="#{player.name} player selected #{piece.type} from #{piece.square.name} square."
+  def piece_picked(player, piece)
+    @text = "#{player.name} player selected #{piece.type} from #{piece.square.name} square."
   end
 
   def out_of_bounds
-    @text="You clicked outside of chessboard. Please pick a piece or a square."
+    @text = 'You clicked outside of chessboard. Please pick a piece or a square.'
   end
 
-  def update
-
-  end
+  def update; end
 
   def draw
     display = Gosu::Font.new(@window, Gosu.default_font_name, 25)
