@@ -1,21 +1,25 @@
 class Knight < Piece
-  def initialize(player=true,square=nil)
+  def initialize(player = true, square = nil)
     super
-    @type = "knight"
-    if @player
-      @image = Gosu::Image.new("media/knight_w.png")
-    else
-      @image = Gosu::Image.new("media/knight_b.png")
-    end
+    @type = 'knight'
+    @image = if @player
+               Gosu::Image.new('media/knight_w.png')
+             else
+               Gosu::Image.new('media/knight_b.png')
+             end
+  end
+
+  def correct_move(square, _squares)
+    correct_move_knight(square, @square)
   end
 
   def captured
-    @x = 1050
-    if @player
-      @y = 750
-    else
-      @y = 250
-    end
-    @square=0
+    @x = W_WIDTH - W_SIDE / 2
+    @y = if @player
+           W_HEIGHT / 2 + DIM * 2.5
+         else
+           W_HEIGHT / 2 - DIM * 2.5
+         end
+    @square = nil
    end
 end

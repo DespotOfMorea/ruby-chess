@@ -1,21 +1,29 @@
 class Queen < Piece
-  def initialize(player=true,square=nil)
+  def initialize(player = true, square = nil)
     super
-    @name = "queen"
-    if @player
-      @image = Gosu::Image.new("media/queen_w.png")
+    @type = 'queen'
+    @image = if @player
+               Gosu::Image.new('media/queen_w.png')
+             else
+               Gosu::Image.new('media/queen_b.png')
+             end
+  end
+
+  def correct_move(square, squares)
+    if !correct_move_bishop(square, @square, squares)
+      correct_move_rook(square, @square, squares)
     else
-      @image = Gosu::Image.new("media/queen_b.png")
+      true
     end
   end
 
   def captured
-    @x = 1050
-    if @player
-      @y = 550
-    else
-      @y = 450
-    end
-    @square=nil
+    @x = W_WIDTH - W_SIDE / 2
+    @y = if @player
+           W_HEIGHT / 2 + DIM * 0.5
+         else
+           W_HEIGHT / 2 - DIM * 0.5
+         end
+    @square = nil
   end
 end
