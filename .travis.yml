@@ -4,5 +4,5 @@ rvm:
   - jruby
   - 2.0.0-p247
 install: 
-  - gem install rake -v 11.2.2
-  - gem install gosu -v 0.8.7.2
+  - gem install rake
+  - gem install gosu
