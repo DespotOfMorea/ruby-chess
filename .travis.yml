@@ -3,4 +3,4 @@ rvm:
   - 2.2
   - jruby
   - 2.0.0-p247
-  install: gem install gosu
+install: gem install gosu -v 0.8.7.2
